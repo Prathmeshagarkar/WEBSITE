@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        /* General styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #7dbfec;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header .company-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff7f50;
+        }
+
+        /* Cart container styles */
+        .cart-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #e1e1e1;
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item .item-details {
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .item-price, .item-quantity {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-buttons button {
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+
+        .quantity-buttons button:hover {
+            background-color: #e76a3b;
+        }
+
+        .remove-button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 15px;
+        }
+
+        .remove-button:hover {
+            background-color: #c9302c;
+        }
+
+        /* Total price styling */
+        .total-price {
+            font-weight: bold;
+            font-size: 24px;
+            color: #28a745;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Button styles */
+        #order-now-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #ff7f50;
+            color: white;
+            font-size: 18px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #order-now-button:hover {
+            background-color: #e76a3b;
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cart-container {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .cart-item img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .cart-item .item-details {
+                padding-left: 0;
+                margin-top: 10px;
+            }
+
+            .total-price {
+                font-size: 20px;
+            }
+
+            #order-now-button {
+                font-size: 16px;
+            }
+
+            nav ul {
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            nav ul li {
+                margin: 5px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .company-name {
+                font-size: 20px;
+            }
+
+            .cart-item img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .cart-item .item-details p {
+                font-size: 14px;
+            }
+
+            .item-price, .item-quantity {
+                font-size: 14px;
+            }
+
+            #order-now-button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Navigation -->
+    <header>
+        <div class="company-name">𝕗𝕣𝕦𝕚𝕥 𝕙𝕖𝕒𝕧𝕖𝕟</div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Cart Page Content -->
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-items-list"></div>
+        <p class="total-price" id="total-price">Total: $0</p>
+        <button id="order-now-button">Order Now</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Fruit Heaven Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to display cart items
+        function displayCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartList = document.getElementById('cart-items-list');
+            const totalPriceElement = document.getElementById('total-price');
+
+            // Clear existing cart items
+            cartList.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                let totalPrice = 0;
+
+                cart.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.classList.add('cart-item');
+                    div.innerHTML = `
+                        <div class="item-details">
+                            <p>${item.title}</p>
+                            <p class="item-quantity">Quantity: ${item.quantity}</p>
+                        </div>
+                        <div class="quantity-buttons">
+                            <button class="decrease" data-index="${index}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="increase" data-index="${index}">+</button>
+                        </div>
+                        <p class="item-price">$${(item.price * item.quantity).toFixed(2)}</p>
+                        <button class="remove-button" data-index="${index}">Remove</button>
+                    `;
+                    cartList.appendChild(div);
+
+                    totalPrice += item.price * item.quantity;
+                    localStorage.setItem('totalPrice',totalPrice)
+                });
+
+                totalPriceElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
+            }
+        }
+
+        // Handle quantity increase and decrease
+        document.addEventListener('click', function(event) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (event.target.classList.contains('increase') || event.target.classList.contains('decrease')) {
+                const index = event.target.getAttribute('data-index');
+                const item = cart[index];
+
+                if (event.target.classList.contains('increase')) {
+                    item.quantity++;
+                } else if (event.target.classList.contains('decrease') && item.quantity > 1) {
+                    item.quantity--;
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+                displayCart(); // Re-display the cart
+            }
+
+            // Handle remove button click
+            if (event.target.classList.contains('remove-button')) {
+                const index = event.target.getAttribute('data-index');
+                cart.splice(index, 1); // Remove item from cart
+                localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+                displayCart(); // Re-display the cart
+            }
+        });
+
+        // Handle "Order Now" button action
+        document.getElementById('order-now-button').addEventListener('click', function() {
+            window.location.href = `payment.html`; // Redirect to payment page
+        });
+
+        // Initial display of cart items
+        document.addEventListener('DOMContentLoaded', displayCart);
+    </script>
+
+</body>
+</html>

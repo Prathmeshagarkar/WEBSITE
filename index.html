@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝕗𝕣𝕦𝕚𝕥 𝕙𝕖𝕒𝕧𝕖𝕟</title>
+    
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #8badd6; /* or any color */
+        }
+
+        header .logo h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        main {
+            padding: 20px;
+        }
+        #hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        #hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Product Grid Styles */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-card h3 {
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding-top: 10px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .logo h1 {
+                font-size: 1.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>𝕗𝕣𝕦𝕚𝕥 𝕙𝕖𝕒𝕧𝕖𝕟</h1>
+        </div>
+        <img src="LOGO BB.png" alt="Fruit Heaven Logo" width="300" height="200">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section id="hero">
+            <h2>𝚠𝚎𝚕𝚌𝚘𝚖𝚎 𝚝𝚘 𝚘𝚞𝚛 𝚝𝚊𝚜𝚝𝚎 𝚊𝚗𝚍 𝚍𝚎𝚕𝚒𝚌𝚒𝚘𝚞𝚜 𝚏𝚛𝚞𝚒𝚝𝚜</h2>
+            <p>🥕🍅🥬🥦 𝓕𝓲𝓷𝓭 𝓽𝓱𝓮 𝓱𝓮𝓪𝓵𝓽𝓱𝔂 𝓯𝓻𝓾𝓲𝓽𝓼 𝓪𝓽 𝓾𝓷𝓫𝓮𝓪𝓽𝓪𝓫𝓵𝓮 𝓹𝓻𝓲𝓬𝓮𝓼 🍆🥔🌽🥑.</p>
+        </section>
+
+        <section id="products">
+            <h2>OUR FRUITS</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4CS7ZJYb4SguP1-HHka3gpKeO9RqSXo4cTg&s" alt="Yubari King Melon">
+                    <h3>Yubari King Melon</h3>
+                </div>
+                <div class="product-card">
+                    <img src="img2.jpg" alt="Densuke Watermelon">
+                    <h3>Densuke Watermelon</h3>
+                </div>
+                <div class="product-card">
+                    <img src="img3.jpg" alt="Taiyo no Tamago Mango">
+                    <h3>Taiyo no Tamago Mango</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 My Fruit Heaven Store. All rights reserved.</p>
+        <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+        </ul>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>

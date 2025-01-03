@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="products.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #7dbfec;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            height: 60px;
+            margin-right: 20px;
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff7f50;
+        }
+
+        /* Product Grid Section */
+        .product-section {
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .buy-now {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .add-to-cart:hover {
+            background-color: #0056b3;
+        }
+
+        .buy-now:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            /* Adjust the number of columns in the product grid */
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Stack header elements vertically on smaller screens */
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo-container {
+                margin-bottom: 10px;
+            }
+
+            /* Adjust product grid for tablets */
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Adjust product card padding */
+            .product-card {
+                padding: 15px;
+            }
+
+            .company-name {
+                font-size: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Adjust the number of columns for mobile */
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .company-name {
+                font-size: 18px;
+            }
+
+            .product-title {
+                font-size: 16px;
+            }
+
+            .product-price {
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding-left: 0;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Logo and Site Name -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="LOGO BB.png" alt="Company Logo" class="logo">
+            <h1 class="company-name">𝕗𝕣𝕦𝕚𝕥 𝕙𝕖𝕒𝕧𝕖𝕟</h1>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <!-- Notification for item added to cart -->
+    <div id="notification" class="notification">Item added to cart!</div>
+
+    <!-- Product Grid Section -->
+    <section class="product-section">
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4CS7ZJYb4SguP1-HHka3gpKeO9RqSXo4cTg&s" alt="Yubari King Melon" class="product-image">
+                <h3 class="product-title">Yubari King Melon</h3>
+                <p class="product-price">$100</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Yubari King Melon" data-price="100">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Yubari King Melon" data-price="100">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="img2.jpg" alt="Densuke Watermelon" class="product-image">
+                <h3 class="product-title">Densuke Watermelon</h3>
+                <p class="product-price">$200</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Densuke Watermelon" data-price="200">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Densuke Watermelon" data-price="200">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="img3.jpg" alt="Ruby Roman Grapes" class="product-image">
+                <h3 class="product-title">Ruby Roman Grapes</h3>
+                <p class="product-price">$150</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Ruby Roman Grapes" data-price="150">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Ruby Roman Grapes" data-price="150">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="img4.jpg" alt="Taiyo no Tamago Mango" class="product-image">
+                <h3 class="product-title">Taiyo no Tamago Mango</h3>
+                <p class="product-price">$120</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Taiyo no Tamago Mango" data-price="120">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Taiyo no Tamago Mango" data-price="120">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="img5.jpg" alt="Shizuoka Strawberries" class="product-image">
+                <h3 class="product-title">Shizuoka Strawberries</h3>
+                <p class="product-price">$80</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Shizuoka Strawberries" data-price="80">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Shizuoka Strawberries" data-price="80">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="img6.jpg" alt="Matsutake Mushrooms" class="product-image">
+                <h3 class="product-title">Matsutake Mushrooms</h3>
+                <p class="product-price">$250</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Matsutake Mushrooms" data-price="250">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Matsutake Mushrooms" data-price="250">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <img src="img7.jpg" alt="Sakura Shrimp" class="product-image">
+                <h3 class="product-title">Sakura Shrimp</h3>
+                <p class="product-price">$180</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Sakura Shrimp" data-price="180">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Sakura Shrimp" data-price="180">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="img8.jpg" alt="Honjozo Sake" class="product-image">
+                <h3 class="product-title">Honjozo Sake</h3>
+                <p class="product-price">$75</p>
+                <div class="product-actions">
+                    <button class="btn add-to-cart" data-title="Honjozo Sake" data-price="75">Add to Cart</button>
+                    <button class="btn buy-now" data-title="Honjozo Sake" data-price="75">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Handle "Add to Cart" action
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const title = this.getAttribute('data-title');
+                const price = parseFloat(this.getAttribute('data-price'));
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => item.title === title);
+
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ title, price, quantity: 1 });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                const notification = document.getElementById('notification');
+                notification.style.display = "block";
+                setTimeout(() => {
+                    notification.style.display = "none";
+                }, 3000);
+            });
+        });
+
+        // Handle "Buy Now" action
+        document.querySelectorAll('.buy-now').forEach(button => {
+            button.addEventListener('click', function() {
+                const title = this.getAttribute('data-title');
+                const price = parseFloat(this.getAttribute('data-price'));
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingItem = cart.find(item => item.title === title);
+
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ title, price, quantity: 1 });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                window.location.href = 'cart.html'; // Redirect to the cart page
+            });
+        });
+    </script>
+
+</body>
+</html>

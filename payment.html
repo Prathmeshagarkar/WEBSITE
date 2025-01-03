@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Form</title>
+  <style>
+    body {
+      background-color: black;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .complex-container-form-approach {
+      background-color: #333;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 20px auto;
+      box-sizing: border-box;
+    }
+    .complex-header-title-for-form {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+    }
+    .complex-input-wrapper-class {
+      margin-bottom: 15px;
+    }
+    .complex-label-for-input {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: white;
+    }
+    .complex-input-field-style {
+      background-color: #535353;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      color: black;
+      box-sizing: border-box;
+    }
+    .complex-submit-button-style {
+      width: 100%;
+      padding: 12px;
+      background-color: rgb(255, 87, 51);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .complex-submit-button-style:hover {
+      background-color: rgb(131, 35, 14);
+    }
+    .confirmation-message {
+      display: none;
+      font-size: 60px;
+      text-align: center;
+      color: #ffffff;
+      margin-top: 50px;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    .confirmation-message button,.confirmation-message button a {
+      padding: 0.5rem;
+      background-color: greenyellow;
+      color: white;
+      font-size: 1.3rem;
+      border: none;
+      text-decoration: none;
+      border-radius: 1rem;
+    }
+    .confirmation-message button:hover,.confirmation-message button a:hover {
+      background: green;
+    }
+    .total-price {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Media Queries for Responsive Design */
+    @media (max-width: 600px) {
+      .complex-container-form-approach {
+        padding: 20px;
+        max-width: 100%;
+        margin: 0 10px;
+      }
+      .complex-header-title-for-form {
+        font-size: 20px;
+      }
+      .complex-input-wrapper-class {
+        margin-bottom: 12px;
+      }
+      .complex-input-field-style {
+        font-size: 14px;
+        padding: 10px;
+      }
+      .complex-submit-button-style {
+        font-size: 14px;
+        padding: 10px;
+      }
+      .total-price {
+        font-size: 16px;
+      }
+    }
+
+    /* For tablets and up to large screens */
+    @media (max-width: 1024px) {
+      .complex-container-form-approach {
+        padding: 25px;
+      }
+      .complex-header-title-for-form {
+        font-size: 22px;
+      }
+      .complex-submit-button-style {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="complex-container-form-approach">
+    <h2 class="complex-header-title-for-form">Payment Form</h2>
+    
+    <!-- Display Total Price -->
+    <div id="totalPrice" class="total-price">₹16500</div>
+
+    <form id="paymentForm" action="javascript:void(0);" method="post">
+      <div class="complex-input-wrapper-class">
+        <label for="name" class="complex-label-for-input">Full Name</label>
+        <input type="text" id="name" name="name" class="complex-input-field-style" required>
+      </div>
+      <div class="complex-input-wrapper-class">
+        <label for="card-number" class="complex-label-for-input">Credit Card Number</label>
+        <input type="text" id="card-number" name="card-number" class="complex-input-field-style" required>
+      </div>
+      <div class="complex-input-wrapper-class">
+        <label for="expiry-date" class="complex-label-for-input">Expiry Date</label>
+        <input type="month" id="expiry-date" name="expiry-date" class="complex-input-field-style" required>
+      </div>
+      <div class="complex-input-wrapper-class">
+        <label for="cvv" class="complex-label-for-input">CVV</label>
+        <input type="text" id="cvv" name="cvv" class="complex-input-field-style" required>
+      </div>
+      <button type="submit" class="complex-submit-button-style" onclick="checkLogin()">Pay Now</button>
+    </form>
+  </div>
+
+  <div class="confirmation-message" id="confirmationMessage">
+    <p>Your order is confirmed!</p>
+    <button><a href="index.html">Go back</a></button>
+  </div>
+
+  <script>
+    function checkLogin(){
+      let login = localStorage.getItem('login') || false;
+      if(login == false){
+        alert('Please login');
+        window.location.href = 'index.html'; return;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Retrieve the total price from localStorage
+      const totalPrice = localStorage.getItem('totalPrice');
+      const totalPriceElement = document.getElementById('totalPrice');
+
+      // Display the total price if it's available
+      if (totalPrice) {
+        totalPriceElement.textContent = `Total Price: ₹${totalPrice}`;
+      } else {
+        totalPriceElement.textContent = 'Total Price: ₹0';
+      }
+
+      // Handle form submission
+      document.getElementById('paymentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let user = JSON.parse(localStorage.getItem('users')) || [];
+        const name = document.getElementById('name').value;
+        const cardNumber = document.getElementById('card-number').value;
+        const expiryDate = document.getElementById('expiry-date').value;
+        const cvv = document.getElementById('cvv').value;
+
+        // Basic validation
+        if ((!name || !cardNumber || !expiryDate || !cvv) && localStorage.getItem('login') !== "") {
+          alert('Please fill out all fields.');
+          return;
+        }
+
+        // Payment logic here (this is just a simulation)
+        document.querySelector('.complex-container-form-approach').style.display = 'none';
+        document.getElementById('confirmationMessage').style.display = 'flex';
+
+        // Clear cart items and total price from localStorage
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('totalPrice');
+      });
+    });
+  </script>
+
+</body>
+</html>

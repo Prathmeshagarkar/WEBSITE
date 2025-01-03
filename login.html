@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Reset some default styles */
+        body, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header styles */
+        header.nav {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px; /* Adjust logo size */
+            width: auto;  /* Maintain aspect ratio */
+        }
+
+        header .buttons ul {
+            list-style: none;
+            display: flex;
+            gap: 15px; /* Space between links */
+        }
+
+        header .buttons a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        header .buttons a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main container styles */
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 100px); /* Adjust height based on header/footer */
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Make login form responsive */
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #login-button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f4f4f4;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header .logo img {
+                height: 40px; /* Adjust logo size for smaller screens */
+            }
+
+            header .buttons ul {
+                gap: 10px; /* Reduce space between links on smaller screens */
+            }
+
+            .main {
+                height: calc(100vh - 80px); /* Adjust height for mobile screens */
+            }
+
+            .login-container {
+                padding: 15px; /* Reduce padding on smaller screens */
+            }
+
+            #login-button {
+                font-size: 14px; /* Smaller font size for buttons */
+            }
+
+            footer a {
+                font-size: 14px; /* Adjust font size for footer links */
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .logo img {
+                height: 35px; /* Adjust logo size further for very small screens */
+            }
+
+            .main {
+                height: calc(100vh - 60px); /* Adjust height for very small screens */
+            }
+
+            .login-container {
+                padding: 10px; /* Further reduce padding */
+            }
+
+            #login-button {
+                font-size: 12px; /* Smaller font size for buttons */
+            }
+
+            footer a {
+                font-size: 12px; /* Adjust footer links for very small screens */
+            }
+        }
+    </style>
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent form submission
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Retrieve all users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if the username and password match any user in the list
+            const user = users.find(user => user.username === username && user.password === password);
+            if (user) {
+                alert("Login successful!");
+                window.location.href = "index.html";
+                localStorage.setItem('login', true);
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <header class="nav">
+        <div class="logo">
+            <!-- Make sure this is the correct path to your logo file -->
+            <img class="logo-1" src="LOGO BB.png" alt="Logo">
+        </div>
+        <div class="buttons">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="main">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form action="#" method="post" onsubmit="validateLogin(event)">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" id="login-button">Login</button>
+            </form>
+            <p>Don't have an account? <a href="signup.html">Sign up here</a>.</p>
+        </div>
+    </div>
+    <footer>
+        <a href="tc.html">T&C</a> | <a href="privacy.html">PRIVACY POLICY</a> | <a href="copyright.html">COPYRIGHTS</a>
+    </footer>
+</body>
+</html>

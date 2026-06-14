@@ -1,79 +1,680 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRUIT HEAVEN</title>
-    <style>/* styles.css */
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruit Heaven</title>
 
-        /* Reset some default styles */
-        body, h1, p {
-            margin: 0;
-            padding: 0;
-            line-height: 1.6; /* Improve readability */
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            scroll-behavior:smooth;
         }
-        
-        /* Set the background color and font for the body */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9; /* Light background color */
-            color: #333; /* Dark text color */
-            padding: 20px; /* Add some padding around the content */
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#f5fff6;
+            color:#222;
+            overflow-x:hidden;
         }
-        
-        /* Header styles */
-        h1 {
-            font-size: 36px; /* Larger font size for the main heading */
-            color: #28a745; /* Green color for the heading */
-            margin-bottom: 20px; /* Space below the heading */
+
+        /* HEADER */
+
+        header{
+            width:100%;
+            background:linear-gradient(135deg,#0ba360,#3cba92);
+            padding:15px 5%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
         }
-        
-        /* Paragraph styles */
-        p {
-            font-size: 18px; /* Font size for paragraphs */
-            margin-bottom: 15px; /* Space below each paragraph */
-            padding: 10px; /* Padding inside paragraphs */
-            background-color: #ffffff; /* White background for paragraphs */
-            border-radius: 5px; /* Rounded corners */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
         }
-        
-        /* Additional styles for emphasis */
-        p strong {
-            color: #007BFF; /* Blue color for strong text */
+
+        .logo-section{
+            display:flex;
+            align-items:center;
+            gap:15px;
         }
-        
-        /* Responsive design */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 28px; /* Smaller font size for smaller screens */
+
+        .logo-section img{
+            width:80px;
+            height:80px;
+            border-radius:50%;
+            object-fit:cover;
+            border:3px solid white;
+            background:white;
+        }
+
+        .logo-section h1{
+            color:white;
+            font-size:2rem;
+            font-weight:700;
+            letter-spacing:1px;
+            text-transform:uppercase;
+        }
+
+        nav ul{
+            display:flex;
+            list-style:none;
+            gap:25px;
+            flex-wrap:wrap;
+        }
+
+        nav ul li a{
+            text-decoration:none;
+            color:white;
+            font-weight:500;
+            transition:0.3s;
+            position:relative;
+        }
+
+        nav ul li a::after{
+            content:'';
+            position:absolute;
+            left:0;
+            bottom:-5px;
+            width:0%;
+            height:2px;
+            background:white;
+            transition:0.3s;
+        }
+
+        nav ul li a:hover::after{
+            width:100%;
+        }
+
+        /* HERO */
+
+        #hero{
+            min-height:90vh;
+            background:
+            linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+            url('https://images.unsplash.com/photo-1619566636858-adf3ef46400b?q=80&w=1400&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:40px 20px;
+        }
+
+        .hero-content{
+            max-width:850px;
+            color:white;
+            animation:fadeIn 1.5s ease;
+        }
+
+        .hero-content h2{
+            font-size:4rem;
+            margin-bottom:20px;
+            line-height:1.2;
+        }
+
+        .hero-content p{
+            font-size:1.2rem;
+            margin-bottom:35px;
+            color:#f1f1f1;
+        }
+
+        .hero-buttons{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:14px 32px;
+            border-radius:50px;
+            text-decoration:none;
+            font-weight:600;
+            transition:0.4s;
+            display:inline-block;
+        }
+
+        .btn-primary{
+            background:#00ff84;
+            color:#111;
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-5px);
+            background:white;
+        }
+
+        .btn-secondary{
+            border:2px solid white;
+            color:white;
+        }
+
+        .btn-secondary:hover{
+            background:white;
+            color:black;
+            transform:translateY(-5px);
+        }
+
+        /* FEATURES */
+
+        #features{
+            padding:80px 5%;
+            background:white;
+        }
+
+        .section-title{
+            text-align:center;
+            margin-bottom:60px;
+        }
+
+        .section-title h2{
+            font-size:2.8rem;
+            color:#0ba360;
+            margin-bottom:10px;
+        }
+
+        .section-title p{
+            color:#777;
+        }
+
+        .feature-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:30px;
+        }
+
+        .feature-card{
+            background:#f8fff9;
+            padding:35px 25px;
+            border-radius:20px;
+            text-align:center;
+            transition:0.4s;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-card:hover{
+            transform:translateY(-10px);
+        }
+
+        .feature-card h3{
+            margin:15px 0;
+            color:#0ba360;
+        }
+
+        .feature-card p{
+            color:#666;
+            font-size:15px;
+        }
+
+        .feature-icon{
+            font-size:55px;
+        }
+
+        /* PRODUCTS */
+
+        #products{
+            padding:90px 5%;
+            background:#eefdf1;
+        }
+
+        .product-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:35px;
+        }
+
+        .product-card{
+            background:white;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+            transition:0.4s;
+        }
+
+        .product-card:hover{
+            transform:translateY(-12px);
+        }
+
+        .product-card img{
+            width:100%;
+            height:250px;
+            object-fit:cover;
+        }
+
+        .product-info{
+            padding:25px;
+            text-align:center;
+        }
+
+        .product-info h3{
+            margin-bottom:10px;
+            font-size:1.5rem;
+        }
+
+        .price{
+            color:#0ba360;
+            font-size:1.2rem;
+            font-weight:700;
+            margin-bottom:15px;
+        }
+
+        .product-info p{
+            color:#666;
+            margin-bottom:20px;
+            font-size:14px;
+        }
+
+        .buy-btn{
+            background:#0ba360;
+            color:white;
+            border:none;
+            padding:12px 25px;
+            border-radius:30px;
+            cursor:pointer;
+            transition:0.3s;
+            font-weight:600;
+        }
+
+        .buy-btn:hover{
+            background:#088d50;
+        }
+
+        /* ABOUT */
+
+        #about{
+            padding:90px 5%;
+            background:white;
+        }
+
+        .about-container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:50px;
+            align-items:center;
+        }
+
+        .about-container img{
+            width:100%;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .about-text h2{
+            font-size:2.8rem;
+            margin-bottom:20px;
+            color:#0ba360;
+        }
+
+        .about-text p{
+            line-height:1.8;
+            color:#555;
+            margin-bottom:20px;
+        }
+
+        /* CONTACT */
+
+        #contact{
+            padding:90px 5%;
+            background:#eefdf1;
+        }
+
+        .contact-box{
+            max-width:700px;
+            margin:auto;
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .contact-box form{
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+
+        .contact-box input,
+        .contact-box textarea{
+            padding:15px;
+            border:1px solid #ccc;
+            border-radius:10px;
+            font-size:16px;
+            outline:none;
+        }
+
+        .contact-box button{
+            padding:15px;
+            border:none;
+            background:#0ba360;
+            color:white;
+            font-size:18px;
+            border-radius:10px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .contact-box button:hover{
+            background:#088d50;
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#0f172a;
+            color:white;
+            text-align:center;
+            padding:30px 20px;
+        }
+
+        footer p{
+            margin-bottom:15px;
+        }
+
+        footer ul{
+            list-style:none;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        footer ul li a{
+            color:#d1d5db;
+            text-decoration:none;
+            transition:0.3s;
+        }
+
+        footer ul li a:hover{
+            color:#00ff84;
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(30px);
             }
-        
-            p {
-                font-size: 16px; /* Smaller font size for paragraphs on smaller screens */
+            to{
+                opacity:1;
+                transform:translateY(0);
             }
-        }</style>
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px){
+
+            .navbar{
+                flex-direction:column;
+                gap:20px;
+            }
+
+            nav ul{
+                justify-content:center;
+                gap:15px;
+            }
+
+            .hero-content h2{
+                font-size:2.5rem;
+            }
+
+            .hero-content p{
+                font-size:1rem;
+            }
+
+            .section-title h2{
+                font-size:2rem;
+            }
+
+            .about-text h2{
+                font-size:2rem;
+            }
+        }
+
+        @media(max-width:480px){
+
+            .logo-section h1{
+                font-size:1.5rem;
+            }
+
+            .hero-content h2{
+                font-size:2rem;
+            }
+
+            .btn{
+                width:100%;
+            }
+
+            .contact-box{
+                padding:25px;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <h1>ABOUT US</h1>
+    <!-- HEADER -->
 
-    <p>Welcome to FRUIT HEAVEN, where fresh, high-quality fruits meet convenience and exceptional service. We are a passionate team dedicated to bringing the best and most flavorful fruits directly to your doorstep. Whether you're craving juicy strawberries, crisp apples, or exotic tropical delights, we offer a wide variety of fruits sourced from trusted farms around the world.
-    </p>
+    <header>
+        <div class="navbar">
 
-    <p>Why Choose Us?</p>
+            <div class="logo-section">
+                <img src="LOGO BB.png" alt="Fruit Heaven Logo">
+                <h1>Fruit Heaven</h1>
+            </div>
 
-    <p>Freshness Guaranteed: Our fruits are carefully selected and shipped to ensure they reach you at the peak of freshness.
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
 
-        Variety: From everyday favorites to rare, hard-to-find fruits, our selection has something for everyone.
-        
-        Sustainability: We work with local farms and eco-conscious suppliers to provide produce that is both fresh and environmentally responsible.
-        
-        Convenience: Shopping for fruits has never been easier. With our user-friendly website and fast delivery, you can enjoy fresh produce without leaving your home.
-        
-        Customer First: Your satisfaction is our top priority. Our team is always ready to assist you with any questions or concerns.
-        Join us in embracing a healthier lifestyle with our handpicked selection of delicious fruits, delivered straight to your door. 
-        
-        Thank you for choosing FRUIT HEAVEN—where freshness meets convenience!</p>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <section id="hero">
+
+        <div class="hero-content">
+
+            <h2>Fresh Fruits Delivered To Your Doorstep 🍉</h2>
+
+            <p>
+                Taste premium quality fruits from around the world.
+                Healthy, fresh, organic and delicious — only at Fruit Heaven.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <section id="features">
+
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+            <p>We provide best quality fruits with amazing service.</p>
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">🍎</div>
+                <h3>Fresh Fruits</h3>
+                <p>Hand-picked premium fruits directly from farms.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Quick and safe doorstep delivery service.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Best Prices</h3>
+                <p>Affordable pricing with premium quality.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3>Top Quality</h3>
+                <p>Trusted by thousands of happy customers.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCTS -->
+
+    <section id="products">
+
+        <div class="section-title">
+            <h2>Featured Products</h2>
+            <p>Our most popular premium fruits collection.</p>
+        </div>
+
+        <div class="product-grid">
+
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4CS7ZJYb4SguP1-HHka3gpKeO9RqSXo4cTg&s" alt="Yubari King Melon">
+
+                <div class="product-info">
+                    <h3>Yubari King Melon</h3>
+                    <div class="price">₹15,999</div>
+                    <p>Luxury Japanese melon with premium sweetness.</p>
+                    <button class="buy-btn">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1563114773-84221bd62daa?q=80&w=1200&auto=format&fit=crop" alt="Densuke Watermelon">
+
+                <div class="product-info">
+                    <h3>Densuke Watermelon</h3>
+                    <div class="price">₹8,499</div>
+                    <p>Rare black watermelon famous for rich taste.</p>
+                    <button class="buy-btn">Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?q=80&w=1200&auto=format&fit=crop" alt="Ruby Roman Grapes">
+
+                <div class="product-info">
+                    <h3>Ruby Roman Grapes</h3>
+                    <div class="price">₹12,999</div>
+                    <p>World-famous giant grapes with amazing flavor.</p>
+                    <button class="buy-btn">Add To Cart</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="about-container">
+
+            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1200&auto=format&fit=crop" alt="About Fruit Heaven">
+
+            <div class="about-text">
+
+                <h2>About Fruit Heaven</h2>
+
+                <p>
+                    Fruit Heaven is a premium online fruit store offering
+                    fresh and exotic fruits from around the world.
+                    We focus on quality, freshness, and customer satisfaction.
+                </p>
+
+                <p>
+                    Our mission is to provide healthy and delicious fruits
+                    at affordable prices with fast and secure delivery.
+                </p>
+
+                <a href="#products" class="btn btn-primary">Explore Products</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>We would love to hear from you.</p>
+        </div>
+
+        <div class="contact-box">
+
+            <form>
+
+                <input type="text" placeholder="Enter Your Name" required>
+
+                <input type="email" placeholder="Enter Your Email" required>
+
+                <textarea rows="5" placeholder="Write Your Message"></textarea>
+
+                <button type="submit">Send Message</button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>© 2026 Fruit Heaven Store. All Rights Reserved.</p>
+
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Instagram</a></li>
+        </ul>
+
+    </footer>
+
 </body>
 </html>
